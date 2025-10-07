@@ -1,0 +1,83 @@
+{
+  "realm": "unifor",
+  "enabled": true,
+  "clients": [
+    {
+      "clientId": "quarkus-api",
+      "publicClient": true,
+      "redirectUris": ["http://localhost:8080/*"],
+      "attributes": {
+        "pkce.code.challenge.method": "S256"
+      }
+    },
+    {
+      "clientId": "frontend-unifor",
+      "publicClient": true,
+      "redirectUris": ["http://localhost:4200/*"],
+      "webOrigins": ["http://localhost:4200"],
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": true,
+      "attributes": {
+        "pkce.code.challenge.method": "S256"
+      }
+    }
+  ],
+  "roles": {
+    "realm": [
+      { "name": "admin" },
+      { "name": "coordenador" },
+      { "name": "professor" },
+      { "name": "aluno" }
+    ]
+  },
+  "users": [
+    {
+      "username": "admin@local",
+      "enabled": true,
+      "email": "admin@local.com",
+      "firstName": "Admin",
+      "lastName": "Local",
+      "emailVerified": true,
+      "realmRoles": ["admin"],
+      "credentials": [
+        { "type": "password", "value": "admin", "temporary": false }
+      ]
+    },
+    {
+      "username": "User Coord",
+      "enabled": true,
+      "email": "coord@local.com",
+      "firstName": "Coord",
+      "lastName": "Local",
+      "emailVerified": true,
+      "realmRoles": ["coordenador"],
+      "credentials": [
+        { "type": "password", "value": "admin", "temporary": false }
+      ]
+    },
+    {
+      "username": "User Prof",
+      "enabled": true,
+      "email": "prof@local.com",
+      "firstName": "prof",
+      "lastName": "Local",
+      "emailVerified": true,
+      "realmRoles": ["professor"],
+      "credentials": [
+        { "type": "password", "value": "admin", "temporary": false }
+      ]
+    },
+    {
+      "username": "User Aluno",
+      "enabled": true,
+      "email": "aluno@local.com",
+      "firstName": "aluno",
+      "lastName": "Local",
+      "emailVerified": true,
+      "realmRoles": ["aluno"],
+      "credentials": [
+        { "type": "password", "value": "admin", "temporary": false }
+      ]
+    }
+  ]
+}
