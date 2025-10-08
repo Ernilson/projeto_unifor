@@ -1,0 +1,69 @@
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:24.0
+    container_name: keycloak-app
+    command: ["start-dev", "--import-realm", "--hostname-strict=false"]
+    environment:
+      KC_DB: postgres
+      KC_DB_URL_HOST: db
+      KC_DB_URL_DATABASE: escola
+      KC_DB_USERNAME: app
+      KC_DB_PASSWORD: app
+      KC_SPI_FRAME_ANCESTORS: "'self' http://localhost:4200"
+    volumes:
+      - ./keycloak/import:/opt/keycloak/data/import
+    ports:
+      - "8081:8080"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16
+    container_name: postgres-db
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app
+      POSTGRES_DB: escola
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U app -d escola"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build:
+      context: ./backend  
+      dockerfile: src/main/docker/Dockerfile.jvm
+    container_name: backend-api
+    environment:
+      QUARKUS_DATASOURCE_JDBC_URL: jdbc:postgresql://db:5432/escola
+      QUARKUS_OIDC_AUTH_SERVER_URL: http://keycloak:8080/realms/unifor
+      QUARKUS_HIBERNATE_ORM_DATABASE_GENERATION: drop-and-create 
+      QUARKUS_HTTP_CORS: "true"
+      QUARKUS_HTTP_CORS_ORIGINS: "http://localhost:4200"
+      QUARKUS_HTTP_CORS_METHODS: "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+      QUARKUS_HTTP_CORS_HEADERS: "accept,authorization,content-type,x-requested-with"
+      QUARKUS_HTTP_CORS_EXPOSED_HEADERS: "Content-Disposition,location"
+      QUARKUS_HTTP_CORS_ACCESS_CONTROL_ALLOW_CREDENTIALS: "true"
+     # QUARKUS_HTTP_CORS_ACCESS_CONTROL_MAX_AGE: "24H"     
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+      - keycloak
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend-app
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+
