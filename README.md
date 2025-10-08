@@ -118,7 +118,7 @@ cd src/main/docker
 docker compose up --build
 ```
 
-* **Frontend:** [http://localhost:4200](http://localhost:4200)
+* **Frontend:** [http://localhost:4200](http://localhost:4200/home)
 * **Backend (API):** [http://localhost:8080](http://localhost:8080)
 * **Keycloak Admin Console:** [http://localhost:8081](http://localhost:8081)
 
