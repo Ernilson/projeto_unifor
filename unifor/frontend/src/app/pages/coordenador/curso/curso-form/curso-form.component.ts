@@ -31,7 +31,7 @@ export class CursoFormComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.id = params['id'];
       if (this.id) {
-        this.service.buscarCursoPorId(this.id).subscribe({
+        this.service.buscarPorId(this.id).subscribe({
           next: (response) => {            
             this.curso = response;
           },

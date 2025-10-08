@@ -27,10 +27,11 @@ export class UsuariosFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    document.getElementById('layoutSidenav_content')?.classList.add('semestre-ajuste');
     this.activatedRoute.params.subscribe(params => {
       this.id = params['id'];
       if (this.id) {
-        this.service.buscarUsuarioPorId(this.id).subscribe({
+        this.service.buscarPorId(this.id).subscribe({
           next: (response) => {           
             this.usuario = response;
           },
@@ -92,4 +93,8 @@ export class UsuariosFormComponent implements OnInit {
       });
     }
   } 
+
+  ngOnDestroy(): void {
+    document.getElementById('layoutSidenav_content')?.classList.remove('semestre-ajuste');
+  }
 }

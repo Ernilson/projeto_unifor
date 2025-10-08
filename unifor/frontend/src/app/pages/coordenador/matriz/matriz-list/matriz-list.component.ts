@@ -30,7 +30,7 @@ export class MatrizListComponent implements OnInit {
     if (usuarioSalvo) {
       this.usuarioLogado = JSON.parse(usuarioSalvo);     
     }
-    this.service.buscarMatrizCurricular().subscribe({
+    this.service.listar().subscribe({
       next: (resposta) => {
         this.matrizCurricularList = resposta;        
       },
@@ -48,7 +48,7 @@ export class MatrizListComponent implements OnInit {
 
   deletarMatriz() {
     this.service
-      .deletar(this.matrizCurricularSelecionada)
+      .deletar(this.matrizCurricularSelecionada.id)
       .subscribe(
         response => {
           this.mensagemSucesso = 'Matriz curricular deletada com sucesso!'

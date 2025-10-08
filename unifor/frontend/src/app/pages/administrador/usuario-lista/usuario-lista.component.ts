@@ -24,7 +24,8 @@ export class ClientesListaComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.service.buscarUsuarios().subscribe({
+    document.getElementById('layoutSidenav_content')?.classList.add('semestre-ajuste');
+    this.service.listar().subscribe({
       next: (resposta) => {        
         this.usuarios = resposta;        
       },
@@ -42,7 +43,7 @@ export class ClientesListaComponent implements OnInit {
 
   deletarUsuario(){
     this.service
-    .deletar(this.usuarioSelecionado)
+    .deletar(this.usuarioSelecionado.id)
     .subscribe(
       response => {
         this.mensagemSucesso = 'Usuário deletado com sucesso!'
@@ -50,4 +51,8 @@ export class ClientesListaComponent implements OnInit {
                   },
       erro => this.mensagemErro = 'Ocorreu um erro ao deletar o usuário.')
   }  
+
+  ngOnDestroy(): void {
+    document.getElementById('layoutSidenav_content')?.classList.remove('semestre-ajuste');
+  }
 }

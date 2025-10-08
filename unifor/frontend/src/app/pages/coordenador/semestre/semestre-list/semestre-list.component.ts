@@ -27,7 +27,7 @@ export class SemestreListComponent implements OnInit {
 
   ngOnInit(): void {
     document.getElementById('layoutSidenav_content')?.classList.add('semestre-ajuste');
-    this.service.buscarSemestres().subscribe({
+    this.service.listar().subscribe({
       next: (resposta) => {
         this.semestres = resposta;        
       },
@@ -49,7 +49,7 @@ export class SemestreListComponent implements OnInit {
 
   deletarSemestre() {
     this.service
-      .deletar(this.semestreSelecionado)
+      .deletar(this.semestreSelecionado.id)
       .subscribe(
         response => {
           this.mensagemSucesso = 'Semestre deletado com sucesso!'

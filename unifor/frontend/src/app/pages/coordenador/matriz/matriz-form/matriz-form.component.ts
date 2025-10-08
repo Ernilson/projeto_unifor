@@ -32,7 +32,7 @@ export class MatrizFormComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.id = params['id'];
       if (this.id) {
-        this.service.buscarMatrizCurricularPorId(this.id).subscribe({
+        this.service.buscarPorId(this.id).subscribe({
           next: (response) => {            
             this.matrizCurricular = response;
           },

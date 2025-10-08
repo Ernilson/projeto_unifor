@@ -25,7 +25,7 @@ export class DisciplinaListComponent implements OnInit {
 
   ngOnInit(): void {
     document.getElementById('layoutSidenav_content')?.classList.add('semestre-ajuste');
-    this.service.buscarDisciplinas().subscribe({
+    this.service.listar().subscribe({
       next: (resposta) => {
         this.disciplinas = resposta;        
       },
@@ -43,7 +43,7 @@ export class DisciplinaListComponent implements OnInit {
 
   deletarDisciplina() {
     this.service
-      .deletar(this.disciplinaSelecionada)
+      .deletar(this.disciplinaSelecionada.id)
       .subscribe(
         response => {
           this.mensagemSucesso = 'Disciplina deletada com sucesso!'

@@ -25,7 +25,7 @@ export class CursoListComponent  implements OnInit {
 
   ngOnInit(): void {
     document.getElementById('layoutSidenav_content')?.classList.add('semestre-ajuste');
-    this.service.buscarCursos().subscribe({
+    this.service.listar().subscribe({
       next: (resposta) => {        
         this.cursos = resposta;        
       },
@@ -43,7 +43,7 @@ export class CursoListComponent  implements OnInit {
 
   deletarCurso(){
     this.service
-    .deletar(this.cursoSelecionado)
+    .deletar(this.cursoSelecionado.id)
     .subscribe(
       response => {
         this.mensagemSucesso = 'Curso deletado com sucesso!'
