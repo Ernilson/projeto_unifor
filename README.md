@@ -112,7 +112,7 @@ Essa estrutura garante **isolamento**, **reprodutibilidade** e **escalabilidade*
 git clone https://github.com/Ernilson/desafio_dev_senior/
 
 # Acessar a pasta Docker
-cd projeto_unifor
+cd projeto_unifor/unifor
 
 # Subir todo o ambiente
 docker compose up --build
