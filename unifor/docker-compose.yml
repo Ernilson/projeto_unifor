@@ -6,9 +6,11 @@ services:
     environment:
       KC_DB: postgres
       KC_DB_URL_HOST: db
-      KC_DB_URL_DATABASE: escola
+      KC_DB_URL: jdbc:postgresql://db:5432/escola
       KC_DB_USERNAME: app
       KC_DB_PASSWORD: app
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
       KC_SPI_FRAME_ANCESTORS: "'self' http://localhost:4200"
     volumes:
       - ./keycloak/import:/opt/keycloak/data/import
