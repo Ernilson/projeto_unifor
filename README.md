@@ -269,15 +269,13 @@ Interfaces separadas por perfil de usuário (Administrador, Coordenador, Profess
 
 ### 🧭 Interface e Perfis
 🔐 Login
-![Login](./docs/login-preview.png)
-
-![Preview da Tela do Administrador](https://raw.githubusercontent.com/Ernilson/projeto_unifor/main/unifor/frontend/docs/administrador-preview.png)
+![Preview da Tela de Login](https://raw.githubusercontent.com/Ernilson/projeto_unifor/main/unifor/frontend/docs/login-preview.png)
 
 🏠 Tela Inicial (Home)
 ![Home](./docs/home-preview.png)
 
 👩‍💼 Perfil Administrador
-![Administrador](./docs/administrador-preview.png)
+![Preview da Tela do Administrador](https://raw.githubusercontent.com/Ernilson/projeto_unifor/main/unifor/frontend/docs/administrador-preview.png)
 
 🎓 Perfil Coordenador
 ![Coordenador](./docs/coordenador-preview.png)
