@@ -12,11 +12,12 @@ import jakarta.validation.constraints.Min;
 )
 public class Semestre extends PanacheEntity {
 
-    @Min(2000)
+    @Min(value = 2000, message = "O ano deve ser no mínimo {value}.")
     @Column(nullable = false)
-    public int ano;
+    public Integer ano;
 
-    @Min(1) @Max(2)
+    @Min(value = 1, message = "O período deve ser no mínimo {value}.")
+    @Max(value = 2, message = "O período deve ser no máximo {value}.")
     @Column(nullable = false)
     public int periodo; // 1 ou 2
 

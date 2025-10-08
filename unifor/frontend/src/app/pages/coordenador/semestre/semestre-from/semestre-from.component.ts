@@ -48,8 +48,14 @@ export class SemestreFromComponent implements OnInit {
   }  
 
   onSubmit() {       
-    const tratarErro = (errorResponse: any, acao: string) => {
+    if (!this.semestre.ano || !this.semestre.periodo) {
       this.sucesso = false;
+      this.erros = ['Preencha todos os campos obrigatórios.'];
+      return;
+    }
+
+    const tratarErro = (errorResponse: any, acao: string) => {
+     this.sucesso = false;
   
       if (errorResponse?.error?.violations?.length) {        
         this.erros = errorResponse.error.violations.map((v: any) => {         

@@ -2,7 +2,6 @@ package br.com.unifor.resource;
 
 import br.com.unifor.entity.Curso;
 import jakarta.annotation.security.PermitAll;
-import jakarta.annotation.security.RolesAllowed;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
@@ -22,6 +21,14 @@ public class CursoResource {
     @PermitAll
     public List<Curso> listAll() { return Curso.listAll(); }
 
+    @GET
+    @Path("/{id}")
+    public Curso findById(@PathParam("id") Long id) {
+        return Curso.findByIdOptional(id)
+                .map(c -> (Curso) c)
+                .orElseThrow(() -> new NotFoundException("Curso não encontrado com ID: " + id));
+    }
+
     @POST
     @Transactional
     @PermitAll
@@ -35,9 +42,14 @@ public class CursoResource {
     @Path("/{id}") @Transactional
     @PermitAll
     public Curso update(@PathParam("id") Long id, @Valid Curso in) {
-        var c = Curso.findByIdOptional(id).orElseThrow(NotFoundException::new);
-      //  c.nome = in.nome; c.codigo = in.codigo; c.ativo = in.ativo;
-        return (Curso) c;
+        Curso cursoExistente = Curso.<Curso>findByIdOptional(id)
+                .orElseThrow(() -> new NotFoundException("Curso não encontrado com ID: " + id));
+
+        cursoExistente.nome = in.nome;
+        cursoExistente.codigo = in.codigo;
+        cursoExistente.ativo = in.ativo;
+
+        return cursoExistente;
     }
 
     @DELETE @Path("/{id}") @Transactional

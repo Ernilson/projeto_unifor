@@ -14,6 +14,12 @@ public class CursoService {
         return Curso.listAll();
     }
 
+    public Curso buscarPorId(Long id) {
+        return Curso.findByIdOptional(id)
+                .map(c -> (Curso) c)
+                .orElseThrow(() -> new NotFoundException("Curso com ID " + id + " não encontrado."));
+    }
+
     @Transactional
     public Curso criar(Curso novoCurso) {
         // A lógica de negócio, como validações, pode ser adicionada aqui.
