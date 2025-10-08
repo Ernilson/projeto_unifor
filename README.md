@@ -271,7 +271,7 @@ Interfaces separadas por perfil de usuário (Administrador, Coordenador, Profess
 🔐 Login
 ![Login](./docs/login-preview.png)
 
-![Texto Alternativo da Imagem](URL_DA_IMAGEM)
+![Preview da Tela do Administrador](https://raw.githubusercontent.com/Ernilson/projeto_unifor/main/unifor/frontend/docs/administrador-preview.png)
 
 🏠 Tela Inicial (Home)
 ![Home](./docs/home-preview.png)
