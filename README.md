@@ -271,6 +271,8 @@ Interfaces separadas por perfil de usuário (Administrador, Coordenador, Profess
 🔐 Login
 ![Login](./docs/login-preview.png)
 
+![Texto Alternativo da Imagem](URL_DA_IMAGEM)
+
 🏠 Tela Inicial (Home)
 ![Home](./docs/home-preview.png)
 
