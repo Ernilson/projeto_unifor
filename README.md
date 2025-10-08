@@ -272,13 +272,13 @@ Interfaces separadas por perfil de usuário (Administrador, Coordenador, Profess
 ![Preview da Tela de Login](https://raw.githubusercontent.com/Ernilson/projeto_unifor/main/unifor/frontend/docs/login-preview.png)
 
 🏠 Tela Inicial (Home)
-![Home](./docs/home-preview.png)
+![Preview da Tela Home](https://raw.githubusercontent.com/Ernilson/projeto_unifor/main/unifor/frontend/docs/home-preview.png)
 
 👩‍💼 Perfil Administrador
 ![Preview da Tela do Administrador](https://raw.githubusercontent.com/Ernilson/projeto_unifor/main/unifor/frontend/docs/administrador-preview.png)
 
 🎓 Perfil Coordenador
-![Coordenador](./docs/coordenador-preview.png)
+![Preview da Tela do Coordenador](https://raw.githubusercontent.com/Ernilson/projeto_unifor/main/unifor/frontend/docs/coordenador-preview.png)
 
 👨‍🏫 Perfil Professor e 👩‍🎓 Aluno
-![Professor e Aluno](./docs/prof-aluno-preview.png)
+![Preview da Tela de Professor e Aluno](https://raw.githubusercontent.com/Ernilson/projeto_unifor/main/unifor/frontend/docs/prof-aluno-preview.png)
