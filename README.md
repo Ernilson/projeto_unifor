@@ -1,4 +1,4 @@
-### 🧩 **Resumo Técnico – Desafio Desenvolvedor UNIFOR – Plataforma de Gestão Acadêmica**
+### 🧩 **Desafio Desenvolvedor UNIFOR – Plataforma de Gestão Acadêmica**
 
 #### **📐 Arquitetura Geral**
 
