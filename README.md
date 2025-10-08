@@ -5,7 +5,7 @@
 A solução adota uma **arquitetura cliente-servidor desacoplada**, composta por:
 
 * **Frontend (Angular 15+)** — interface web responsiva, responsável pela interação com o usuário.
-* **Backend (Java 17 + Quarkus)** — responsável pela lógica de negócio, validações e persistência.
+* **Backend (Java 21 + Quarkus)** — responsável pela lógica de negócio, validações e persistência.
 * **Banco de Dados (PostgreSQL)** — camada de persistência relacional.
 * **Keycloak** — provedor de identidade centralizado (autenticação/autorização).
 * **Docker + Docker Compose** — para orquestração e execução unificada de todos os serviços.
