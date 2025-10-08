@@ -112,13 +112,16 @@ Essa estrutura garante **isolamento**, **reprodutibilidade** e **escalabilidade*
 git clone https://github.com/Ernilson/desafio_dev_senior/
 
 # Acessar a pasta Docker
-cd src/main/docker
+cd projeto_unifor
 
 # Subir todo o ambiente
 docker compose up --build
+
+# No navegador
+http://localhost:4200/home
 ```
 
-* **Frontend:** [http://localhost:4200](http://localhost:4200/home)
+* **Frontend:** [http://localhost:4200/home](http://localhost:4200/home)
 * **Backend (API):** [http://localhost:8080](http://localhost:8080)
 * **Keycloak Admin Console:** [http://localhost:8081](http://localhost:8081)
 
