@@ -1,0 +1,40 @@
+## Estágio 1: Build da Aplicação com Maven
+# Usamos uma imagem Maven com Java 21 para compilar o projeto
+FROM maven:3.9-eclipse-temurin-21 AS build
+
+# Define o diretório de trabalho dentro do contêiner de build
+WORKDIR /usr/src/app
+
+# Copia o pom.xml primeiro para aproveitar o cache de dependências do Docker
+COPY pom.xml .
+
+# Copia o wrapper do Maven
+COPY .mvn/ .mvn
+COPY mvnw .
+
+# Baixa as dependências do projeto
+RUN mvn dependency:go-offline -B
+
+# Copia o restante do código-fonte
+COPY src ./src
+
+# Executa o build do Maven. Isso cria a pasta 'target/quarkus-app'
+RUN mvn package -DskipTests
+
+
+## Estágio 2: Imagem Final de Execução
+# Usamos uma imagem base leve do Java 21
+FROM registry.access.redhat.com/ubi9/openjdk-21:1.23
+
+ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en'
+ENV JAVA_OPTS="-Dquarkus.http.host=0.0.0.0"
+ENV DEPLOYMENTS_DIR=/deployments
+
+# Copia os artefatos da aplicação do estágio de build para a imagem final
+COPY --from=build /usr/src/app/target/quarkus-app/ ${DEPLOYMENTS_DIR}
+
+EXPOSE 8080
+USER 1001
+
+# Comando final para iniciar a aplicação, apontando para o JAR no local correto
+CMD ["java", "-jar", "/deployments/quarkus-run.jar"]

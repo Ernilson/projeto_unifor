@@ -1,0 +1,39 @@
+# Node modules
+node_modules/
+
+# Compilação e build
+dist/
+build/
+tmp/
+out-tsc/
+
+# IDEs e editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Sistema de logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Arquivos de cache
+.angular/cache/
+.cache/
+coverage/
+package-lock.json
+
+# Ambientes
+.env
+.env.*
+!.env.example
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Repositórios temporários
+.sass-cache/
+bower_components/
