@@ -10,6 +10,8 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.BadRequestException;
 import jakarta.ws.rs.NotFoundException;
+import jakarta.ws.rs.WebApplicationException;
+import jakarta.ws.rs.core.Response;
 
 import java.util.List;
 import java.util.Optional;
@@ -74,6 +76,18 @@ public class MatrizCurricularService {
                 .firstResultOptional();
         if (optionalExistente.isPresent()) {
             throw new IllegalStateException("Matriz Curricular para este curso e semestre já existe.");
+        }
+
+        // --- 3️⃣ Verifica duplicidade ---
+        Optional<MatrizCurricular> optionalMatriz = MatrizCurricular
+                .find("curso = ?1 and semestre = ?2", curso, semestre)
+                .firstResultOptional();
+
+        if (optionalMatriz.isPresent()) {
+            throw new WebApplicationException(
+                    "Já existe uma matriz curricular para este curso e semestre.",
+                    Response.Status.BAD_REQUEST
+            );
         }
 
         // --- 4. Cria e persiste a nova matriz ---

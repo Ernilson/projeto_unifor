@@ -1,7 +1,9 @@
 package br.com.unifor.resource;
 
 import br.com.unifor.entity.Curso;
+import br.com.unifor.service.CursoService;
 import jakarta.annotation.security.PermitAll;
+import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
@@ -16,6 +18,9 @@ import java.util.List;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class CursoResource {
+
+    @Inject
+    CursoService service;
 
     @GET
     @PermitAll
@@ -52,10 +57,12 @@ public class CursoResource {
         return cursoExistente;
     }
 
-    @DELETE @Path("/{id}") @Transactional
+    @DELETE
+    @Path("/{id}")
     @PermitAll
-    public void delete(@PathParam("id") Long id) {
-        Curso.deleteById(id);
+    public Response delete(@PathParam("id") Long id) {
+        service.delete(id);
+        return Response.noContent().build();
     }
 
 }

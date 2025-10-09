@@ -1,5 +1,6 @@
 package br.com.unifor.service;
 
+import br.com.unifor.entity.MatrizCurricular;
 import br.com.unifor.entity.Semestre;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -70,7 +71,17 @@ public class SemestreService {
 
     @Transactional
     public void delete(Long id) {
-        boolean ok = Semestre.deleteById(id);
-        if (!ok) throw new NotFoundException();
+        long count = MatrizCurricular.count("semestre.id", id);
+        if (count > 0) {
+            throw new WebApplicationException(
+                    "Não é possível excluir o semestre, pois ele está vinculado a " + count + " matriz(es) curricular(es).",
+                    Response.Status.BAD_REQUEST
+            );
+        }
+
+        boolean deletado = Semestre.deleteById(id);
+        if (!deletado) {
+            throw new WebApplicationException("Semestre com ID " + id + " não encontrado.", Response.Status.NOT_FOUND);
+        }
     }
 }

@@ -1,9 +1,12 @@
 package br.com.unifor.service;
 
 import br.com.unifor.entity.Curso;
+import br.com.unifor.entity.MatrizCurricular;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.NotFoundException;
+import jakarta.ws.rs.WebApplicationException;
+import jakarta.ws.rs.core.Response;
 
 import java.util.List;
 
@@ -43,7 +46,20 @@ public class CursoService {
     }
 
     @Transactional
-    public boolean deletar(Long id) {
-        return Curso.deleteById(id);
+    public void delete(Long id) {
+        Curso curso = Curso.findById(id);
+        if (curso == null) {
+            throw new WebApplicationException("Curso não encontrado.", Response.Status.NOT_FOUND);
+        }
+
+        long countVinculos = MatrizCurricular.count("curso.id", id);
+        if (countVinculos > 0) {
+            throw new WebApplicationException(
+                    "Não é possível excluir o curso. Existe uma matriz curricular vinculada a ele.",
+                    Response.Status.CONFLICT
+            );
+        }
+
+        curso.delete();
     }
 }

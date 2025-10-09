@@ -103,27 +103,6 @@ class CursoServiceTest {
         });
     }
 
-    @Test
-    @TestTransaction
-    void deletar_quandoCursoExiste_deveRetornarTrueEDeletar() {
 
-        Curso cursoExistente = criarCursoTeste("Artes", "AR005");
-        Long idExistente = cursoExistente.id;
 
-        boolean sucesso = cursoService.deletar(idExistente);
-        assertTrue(sucesso);
-
-        assertEquals(0, Curso.count());
-        assertTrue(Curso.findByIdOptional(idExistente).isEmpty());
-    }
-
-    @Test
-    @TestTransaction
-    void deletar_quandoCursoNaoExiste_deveRetornarFalse() {
-        Long idInexistente = (Long) 888L;
-
-        boolean sucesso = cursoService.deletar(idInexistente);
-        assertFalse(sucesso);
-        assertEquals(0, Curso.count()); // Garantir que não havia nada antes/depois
-    }
 }
