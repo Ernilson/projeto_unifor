@@ -16,12 +16,22 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12" *ngIf="temRole('coordenador')">
-            <button class="btn btn-success" (click)="novoCadastro()">
-                <i class="fa fa-plus"></i> Novo
-            </button>
-        </div>
-    </div>
+      <div class="col-md-12" *ngIf="temRole('coordenador')">                
+        <button
+          *ngIf="cursosDisponiveis?.length && semestresDisponiveis?.length; else avisoCadastro"
+          class="btn btn-success"
+          (click)="novoCadastro()"
+        >
+          <i class="fa fa-plus"></i> Novo
+        </button> 
+        <ng-template #avisoCadastro>
+          <div class="alert alert-warning mt-2" role="alert">
+            ⚠️ Para cadastrar uma matriz curricular, é necessário ter pelo menos
+            um <strong>curso</strong> e um <strong>semestre</strong> cadastrados.
+          </div>
+        </ng-template>    
+      </div>
+    </div>    
     <br />
     <div class="row">
         <div class="col-md-12">
@@ -30,7 +40,7 @@
                     <tr style="color:#555454">
                         <th>Curso</th>
                         <th>Semestre</th>
-                        <th>Ativo ?</th>
+                        <th>Ativo</th>
                         <th>AÇÕES</th>
                         <th></th>
                     </tr>
@@ -45,7 +55,7 @@
                         {{ matrizCurricular.semestre?.ano }}/{{ matrizCurricular.semestre?.periodo }}
                       </td>                 
                 
-                      <td>{{ matrizCurricular.ativo ? 'Ativo' : 'Inativo' }}</td>                
+                      <td>{{ matrizCurricular.ativa ? 'Ativo' : 'Inativo' }}</td>                
              
                       <td>
                         <button

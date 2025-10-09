@@ -34,8 +34,7 @@ export class MatrizFormComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {
-    this.matrizCurricular = new MatrizCurricular();  }
-  
+    this.matrizCurricular = new MatrizCurricular();  }  
 
   ngOnInit(): void {
     document.getElementById('layoutSidenav_content')?.classList.add('semestre-ajuste');
@@ -55,6 +54,9 @@ export class MatrizFormComponent implements OnInit {
         this.service.buscarPorId(this.id).subscribe({
           next: (response) => {            
             this.matrizCurricular = response;
+
+            this.idCurso = response.curso?.id;
+            this.idSemestre = response.semestre?.id;
           },
           error: (errorResponse) => {            
             this.matrizCurricular = new MatrizCurricular();
@@ -73,14 +75,14 @@ export class MatrizFormComponent implements OnInit {
       this.sucesso = false;
       this.erros = ['Preencha todos os campos obrigatórios.'];
       return;
-    }
+    }    
   
     const dto = {
       cursoId: this.idCurso,
       semestreId: this.idSemestre,
       ativa: this.matrizCurricular.ativa
     };    
-  
+      
     const tratarErro = (errorResponse: any, acao: string) => {
       this.sucesso = false;
       if (errorResponse?.error?.violations?.length) {

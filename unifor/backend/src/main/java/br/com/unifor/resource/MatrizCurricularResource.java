@@ -1,6 +1,8 @@
 package br.com.unifor.resource;
 
 import br.com.unifor.entity.MatrizCurricular;
+import br.com.unifor.entity.dto.MatrizMapper;
+import br.com.unifor.entity.dto.MatrizResponseDTO;
 import br.com.unifor.service.MatrizCurricularService;
 import jakarta.annotation.security.PermitAll;
 import jakarta.inject.Inject;
@@ -62,10 +64,12 @@ public class MatrizCurricularResource {
     @PUT
     @Path("/{id}")
     @PermitAll
-    public MatrizCurricular update(@PathParam("id") Long id, MatrizUpdateDTO dto) {
+    public MatrizResponseDTO update(@PathParam("id") Long id, MatrizUpdateDTO dto) {
         if (dto == null) throw new BadRequestException("body requerido");
-        return service.update(id, dto.cursoId(), dto.semestreId(), dto.ativa());
+        var matriz = service.update(id, dto.cursoId(), dto.semestreId(), dto.ativa());
+        return MatrizMapper.toDTO(matriz);
     }
+
 
     @PATCH
     @Path("/{id}/ativa")

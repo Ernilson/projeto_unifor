@@ -98,25 +98,28 @@ public class MatrizCurricularService {
     }
 
     @Transactional
-    public MatrizCurricular update(Long id, Long novoCursoId, Long novoSemestreId, Boolean ativa) {
-        MatrizCurricular m = MatrizCurricular.<MatrizCurricular>findByIdOptional(id)
-                .orElseThrow(() -> new NotFoundException("Matriz Curricular com ID " + id + " não encontrada."));
+    public MatrizCurricular update(Long id, Long cursoId, Long semestreId, Boolean ativa) {
+        MatrizCurricular matriz = MatrizCurricular.findById(id);
+        if (matriz == null)
+            throw new NotFoundException("Matriz não encontrada");
 
-        if (novoCursoId != null && (m.curso == null || !m.curso.id.equals(novoCursoId))) {
-            Curso c = (Curso) Curso.findByIdOptional(novoCursoId)
-                    .orElseThrow(() -> new NotFoundException("Curso com ID " + novoCursoId + " não encontrado."));
-            m.curso = c;
-        }
+        Curso curso = Curso.findById(cursoId);
+        if (curso == null)
+            throw new NotFoundException("Curso não encontrado");
 
-        if (novoSemestreId != null && (m.semestre == null || !m.semestre.id.equals(novoSemestreId))) {
-            Semestre s = (Semestre) Semestre.findByIdOptional(novoSemestreId)
-                    .orElseThrow(() -> new NotFoundException("Semestre com ID " + novoSemestreId + " não encontrado."));
-            m.semestre = s;
-        }
+        Semestre semestre = Semestre.findById(semestreId);
+        if (semestre == null)
+            throw new NotFoundException("Semestre não encontrado");
 
-        if (ativa != null) m.ativa = ativa;
+        matriz.curso = curso;
+        matriz.semestre = semestre;
+        matriz.ativa = ativa;
 
-        return m;
+        curso.getNome();
+        semestre.getAno();
+
+        MatrizCurricular.persist(matriz);
+        return matriz;
     }
 
     @Transactional
