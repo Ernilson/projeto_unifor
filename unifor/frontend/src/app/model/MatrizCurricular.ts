@@ -1,9 +1,10 @@
+import { Curso } from "./Curso";
 import { Semestre } from "./Semestre";
 
 export class MatrizCurricular {
     id?: number;     
-    curso: string;
+    curso: Curso;
     semestre: Semestre;       
-    ativa: string;   
+    ativa: boolean;   
   }
   

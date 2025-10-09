@@ -38,7 +38,7 @@
                         <tr *ngFor="let semestre of semestres" [ngClass]="{ 'nao-membro': !semestre.membro }">
                             <td>{{ semestre.ano }}</td>
                             <td>{{ semestre.periodo }}</td>
-                            <td>{{ semestre.ativo }}</td>
+                            <td>{{ semestre.ativo ? 'Ativo' : 'Inativo' }}</td>                            
                             <td>
                                 <button class="btn btn-primary"
                                     [routerLink]="['/coordenador/semestre', semestre.id]" title="Editar">
@@ -48,7 +48,6 @@
                                     data-toggle="modal" data-target="#modalDelecao" title="Excluir">
                                     <i class="fa fa-trash"></i>
                                 </button>
-
                             </td>
                         </tr>
                     </tbody>

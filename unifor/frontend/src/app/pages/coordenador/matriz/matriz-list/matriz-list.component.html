@@ -36,24 +36,38 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let matrizCurricular of matrizCurricularList"
-                        [ngClass]="{ 'nao-membro': !matrizCurricular.membro }">
-                        <td>{{ matrizCurricular.curso }}</td>
-                        <td>{{ matrizCurricular.semestre }}</td>
-                        <td>{{ matrizCurricular.ativo }}</td>
-                        <td>
-                            <button class="btn btn-primary"
-                                [routerLink]="['/coordenador/matriz', matrizCurricular.id]" title="Editar">
-                                <i class="fa fa-edit"></i>
-                            </button>
-                            <button class="btn btn-danger ml-2" (click)="exibirMatrizModalDelet(matrizCurricular)"
-                                data-toggle="modal" data-target="#modalDelecao" title="Excluir">
-                                <i class="fa fa-trash"></i>
-                            </button>
-
-                        </td>
+                    <tr *ngFor="let matrizCurricular of matrizCurricularList">                 
+                      <td>
+                        {{ matrizCurricular.curso?.nome || ('ID: ' + matrizCurricular.curso?.id) }}
+                      </td>            
+                  
+                      <td>
+                        {{ matrizCurricular.semestre?.ano }}/{{ matrizCurricular.semestre?.periodo }}
+                      </td>                 
+                
+                      <td>{{ matrizCurricular.ativo ? 'Ativo' : 'Inativo' }}</td>                
+             
+                      <td>
+                        <button
+                          class="btn btn-primary"
+                          [routerLink]="['/coordenador/matriz', matrizCurricular.id]"
+                          title="Editar"
+                        >
+                          <i class="fa fa-edit"></i>
+                        </button>
+                  
+                        <button
+                          class="btn btn-danger ml-2"
+                          (click)="exibirMatrizModalDelet(matrizCurricular)"
+                          data-toggle="modal"
+                          data-target="#modalDelecao"
+                          title="Excluir"
+                        >
+                          <i class="fa fa-trash"></i>
+                        </button>
+                      </td>
                     </tr>
-                </tbody>
+                  </tbody>
             </table>
         </div>
     </div>

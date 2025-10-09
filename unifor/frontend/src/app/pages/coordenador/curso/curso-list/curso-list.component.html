@@ -35,7 +35,7 @@
                 <tbody>
                     <tr *ngFor="let curso of cursos" [ngClass]="{ 'nao-membro': !curso.membro }">
                         <td>{{ curso.nome }}</td>
-                        <td>{{ curso.ativo }}</td>                        
+                        <td>{{ curso.ativo ? 'Ativo' : 'Inativo' }}</td>
                         <td>
                             <button class="btn btn-primary" [routerLink]="['/coordenador/curso', curso.id]" title="Editar">
                                 <i class="fa fa-edit"></i>

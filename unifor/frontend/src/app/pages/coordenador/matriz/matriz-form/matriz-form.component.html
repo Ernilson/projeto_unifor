@@ -1,12 +1,15 @@
 <h1 class="mt-4" style="color:#2f86e2">Matriz Curricular</h1>
 <ol class="breadcrumb mb-4" style="background-color:#b2d0f7">
-    <li class="breadcrumb-item active">{{ matrizCurricular.id ? 'Edição' : 'Cadastro' }}</li>
+    <li class="breadcrumb-item active">
+        {{ matrizCurricular.id ? 'Edição' : 'Cadastro' }}
+    </li>
 </ol>
+
 <div class="container">
-    <form #clienteForm="ngForm" (ngSubmit)="onSubmit()">
+    <form #matrizForm="ngForm" (ngSubmit)="onSubmit()">
         <div class="row">
             <div class="col-md-12">
-                <div class="alert alert-success" role="alert" *ngIf="sucesso == true">
+                <div class="alert alert-success" role="alert" *ngIf="sucesso">
                     {{ mensagemSucesso }}
                 </div>
                 <div class="alert alert-danger" role="alert" *ngFor="let erro of erros">
@@ -17,14 +20,30 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>Curso:</label>
-                    <input type="text" class="form-control" [(ngModel)]="matrizCurricular.curso" name="curso" />
+                    <label>Curso:*</label>
+                    <select *ngIf="!matrizCurricular.id" class="form-control" [(ngModel)]="idCurso" name="cursoId"
+                        required>
+                        <option [ngValue]="undefined">Selecione um curso</option>
+                        <option *ngFor="let c of cursosDisponiveis" [ngValue]="c.id">
+                            {{ c.nome }} ({{ c.codigo }})
+                        </option>
+                    </select>
+                    <input *ngIf="matrizCurricular.id" type="text" class="form-control"
+                        [value]="matrizCurricular.curso?.nome + ' (' + matrizCurricular.curso?.codigo + ')'" readonly />
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>Semestre:</label>
-                    <input type="text" class="form-control" [(ngModel)]="matrizCurricular.semestre" name="semestre">
+                    <label>Semestre: *</label>
+                    <select *ngIf="!matrizCurricular.id" class="form-control" [(ngModel)]="idSemestre" name="semestreId"
+                        required>
+                        <option [ngValue]="undefined">Selecione um semestre</option>
+                        <option *ngFor="let s of semestresDisponiveis" [ngValue]="s.id">
+                            {{ s.ano }}/{{ s.periodo }}
+                        </option>
+                    </select>
+                    <input *ngIf="matrizCurricular.id" type="text" class="form-control"
+                        [value]="matrizCurricular.semestre?.ano + '/' + matrizCurricular.semestre?.periodo" readonly />
                 </div>
             </div>
             <div class="col-md-12">
@@ -42,9 +61,11 @@
                 <button type="submit" class="btn btn-success mx-1" *ngIf="!matrizCurricular.id">
                     <i class="fa fa-save"></i> Salvar
                 </button>
+
                 <button type="submit" class="btn btn-primary mx-1" *ngIf="matrizCurricular.id">
                     <i class="fa fa-sync-alt"></i> Atualizar
                 </button>
+
                 <button type="button" class="btn btn-danger mx-1" (click)="voltarParaListagem()">
                     <i class="fa fa-arrow-alt-circle-left"></i> Voltar
                 </button>

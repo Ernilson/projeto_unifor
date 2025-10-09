@@ -1,6 +1,5 @@
 package br.com.unifor.service;
 
-
 import br.com.unifor.entity.Curso;
 import br.com.unifor.entity.MatrizCurricular;
 import br.com.unifor.entity.Semestre;
@@ -9,6 +8,7 @@ import io.quarkus.panache.common.Parameters;
 import io.quarkus.panache.common.Page;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
+import jakarta.ws.rs.BadRequestException;
 import jakarta.ws.rs.NotFoundException;
 
 import java.util.List;

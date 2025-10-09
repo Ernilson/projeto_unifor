@@ -17,4 +17,19 @@
     z-index: -1;
 }
 
+.badge {
+    font-size: 0.9em;
+    padding: 6px 10px;
+    border-radius: 8px;
+    color: #fff;
+  }
+  
+  .bg-success {
+    background-color: #28a745 !important;
+  }
+  
+  .bg-danger {
+    background-color: #dc3545 !important;
+  }
+
   
