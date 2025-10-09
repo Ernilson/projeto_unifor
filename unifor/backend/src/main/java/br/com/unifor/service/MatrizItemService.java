@@ -3,7 +3,7 @@ package br.com.unifor.service;
 import br.com.unifor.entity.Disciplina;
 import br.com.unifor.entity.MatrizCurricular;
 import br.com.unifor.entity.MatrizItem;
-import io.quarkus.hibernate.orm.panache.PanacheQuery;
+
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.BadRequestException;
