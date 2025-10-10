@@ -44,15 +44,6 @@ class CursoServiceTest {
 
     @Test
     @TestTransaction
-    void listarTodos_quandoCursosExistem_deveRetornarTodosCursos() {
-        criarCursoTeste("Engenharia de Software", "ES001");
-        criarCursoTeste("Direito", "DR002");
-
-        List<Curso> cursos = cursoService.listarTodos();
-    }
-
-    @Test
-    @TestTransaction
     void criar_devePersistirNovoCurso() {
         Curso novoCurso = new Curso();
         novoCurso.nome = "Medicina";

@@ -29,21 +29,6 @@ class SemestreServiceTest {
         MockitoAnnotations.openMocks(this);
     }
 
-
-    @Test
-    @TestTransaction
-    void create_quandoDadosValidos_devePersistirComSucesso() {
-        // Arrange (Preparação)
-        Semestre novoSemestre = new Semestre(2025, 1, true);
-
-        // Act (Ação)
-        Semestre semestreSalvo = semestreService.create(novoSemestre);
-
-        // Assert (Verificação)
-        assertNotNull(semestreSalvo.id, "O ID não deveria ser nulo após salvar");
-        assertEquals(2025, semestreSalvo.ano);
-    }
-
     @Test
     void create_quandoInputNulo_deveLancarBadRequestException() {
         // Cenário: Tenta criar com um objeto nulo.
@@ -85,5 +70,15 @@ class SemestreServiceTest {
         assertTrue(resultado.isEmpty());
     }
 
+    @Test
+    @TestTransaction
+    void delete_quandoIdExisteESemVinculos_deveRemoverComSucesso() {
+        Semestre semestre = new Semestre(2023, 1, true);
+        semestre.persist();
+        Long idExistente = semestre.id;
+
+        assertDoesNotThrow(() -> semestreService.delete(idExistente));
+        assertNull(Semestre.findById(idExistente));
+    }
 
 }

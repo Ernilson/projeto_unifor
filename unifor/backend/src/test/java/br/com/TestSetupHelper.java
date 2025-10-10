@@ -27,6 +27,26 @@ public class TestSetupHelper {
         c.persist();
         return c;
     }
+    // Helper para criar um curso
+    Curso criarCurso(String nome, String codigo) {
+        Curso curso = new Curso();
+        curso.nome = nome;
+        curso.codigo = codigo;
+        curso.ativo = true;
+        curso.persist();
+        return curso;
+    }
+
+    // Helper para criar um semestre
+    Semestre criarSemestre(int ano, int periodo) {
+        Semestre semestre = new Semestre();
+        semestre.ano = ano;
+        semestre.periodo = periodo;
+        semestre.ativo = true;
+        semestre.persist();
+        return semestre;
+    }
+
 
     // Cria e persiste a entidade Semestre com COMMIT.
     @Transactional
