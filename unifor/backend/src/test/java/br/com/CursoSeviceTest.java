@@ -39,7 +39,7 @@ class CursoServiceTest {
     @TestTransaction
     void listarTodos_quandoNenhumCursoExiste_deveRetornarListaVazia() {
         List<Curso> cursos = cursoService.listarTodos();
-        assertFalse(cursos.isEmpty());
+        assertTrue(cursos.isEmpty());
     }
 
     @Test
