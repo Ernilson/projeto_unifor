@@ -193,6 +193,7 @@ Durante os testes, utilize um dos usuários pré-configurados no Keycloak.
 | 👨‍🏫 **Professor**     | `User Prof`                   | `admin`      |
 | 👩‍🎓 **Aluno**         | `User Aluno`                  | `admin`     |
 
+exemplo de acesso local: aluno@local.com, professor@local.com, coord@local.com
 
 💡 Observação aos avaliadores:
 Após subir os containers via docker-compose up --build, aguarde o Keycloak inicializar completamente antes de tentar o login.
