@@ -109,7 +109,7 @@ Essa estrutura garante **isolamento**, **reprodutibilidade** e **escalabilidade*
 
 ```bash
 # Clonar o projeto
-git clone https://github.com/Ernilson/desafio_dev_senior/
+git clone https://github.com/Ernilson/projeto_unifor
 
 # Acessar a pasta Docker
 cd projeto_unifor/unifor
