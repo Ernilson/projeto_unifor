@@ -188,7 +188,7 @@ Durante os testes, utilize um dos usuários pré-configurados no Keycloak.
 
 | 🧩 **Perfil**           | 👤 **Usuário (username)** | 🔑 **Senha** |
 | ----------------------- | ------------------------- | ------------ |
-| 🧑‍💼 **Administrador** | `admin1`                  | `admin`     |
+| 🧑‍💼 **Administrador** | `admin@local.com`                  | `admin`     |
 | 🎓 **Coordenador**      | `coord@local.com`                  | `admin`     |
 | 👨‍🏫 **Professor**     | `prof@local.com`                   | `admin`      |
 | 👩‍🎓 **Aluno**         | `aluno@local.com`                  | `admin`     |
